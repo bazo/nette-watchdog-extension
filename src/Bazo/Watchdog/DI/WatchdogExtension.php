@@ -18,7 +18,7 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 		'useLogger' => TRUE
 	];
 
-	private $userLogger;
+	private $useLogger;
 
 	/**
 	 * Processes configuration data
