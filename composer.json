@@ -1,0 +1,21 @@
+{
+	"name": "bazo/nette-watchdog-extension",
+	"type": "library",
+	"description": "Nette Watchdog extension",
+	"keywords": ["log", "logging", "watchdog", "nette"],
+	"homepage": "https://github.com/bazo/nette-watchdog-extension",
+	"authors": [
+		{
+			"name": "Martin Bažík",
+			"email": "martin@bazo.sk",
+			"homepage": "http://bazo.sk"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"bazo/watchdog-client": "@dev"
+	},
+	"autoload": {
+		"psr-0": {"Bazo": "src/"}
+	}
+}
