@@ -36,10 +36,6 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 		$container->addDefinition($this->prefix('client'))
 				->setClass('\Bazo\Watchdog\WatchdogClient', $config);
 
-		$container->addDefinition('netteLogger')
-				->setClass('\Bazo\Watchdog\NetteLogger')
-				->setFactory('@container::getService', [$this->prefix('netteLogger')]);
-
 		$container->addDefinition($this->prefix('logger'))
 				->setClass('\Bazo\Watchdog\NetteLogger')
 				->setAutowired(FALSE);
@@ -54,7 +50,7 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 	{
 		if ($this->useLogger === TRUE) {
 			$initialize = $class->methods['initialize'];
-			$initialize->addBody('\Nette\Diagnostics\Debugger::$logger = $this->getService(?);', [$this->prefix('netteLogger')]);
+			$initialize->addBody('\Nette\Diagnostics\Debugger::$logger = $this->getService(?);', [$this->prefix('logger')]);
 		}
 	}
 
