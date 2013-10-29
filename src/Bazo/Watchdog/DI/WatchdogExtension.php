@@ -39,13 +39,13 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 				->setClass('\Bazo\Watchdog\NetteLogger')
 				->setFactory('@container::getService', [$this->prefix('netteLogger')]);
 
-		$container->addDefinition($this->prefix('netteLogger'))
+		$container->addDefinition($this->prefix('logger'))
 				->setClass('\Bazo\Watchdog\NetteLogger')
 				->setAutowired(FALSE);
 
-		$container->addDefinition('netteLogger')
+		$container->addDefinition('watchdogLogger')
 				->setClass('\Bazo\Watchdog\NetteLogger')
-				->setFactory('@container::getService', [$this->prefix('netteLogger')]);
+				->setFactory('@container::getService', [$this->prefix('logger')]);
 	}
 
 
