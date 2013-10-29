@@ -31,6 +31,7 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 
 		$config = $this->getConfig($this->defaults, TRUE);
 		$this->useLogger = $config['useLogger'];
+		unset($config['useLogger']);
 		
 		$container->addDefinition($this->prefix('client'))
 				->setClass('\Bazo\Watchdog\WatchdogClient', $config);
