@@ -32,7 +32,9 @@ class NetteLogger extends \Nette\Diagnostics\Logger
 			self::INFO => Alert::INFO,
 			self::WARNING => Alert::ERROR
 		];
-		$level = $levelMap[$priority];
+		
+		$level = isset($levelMap[$priority]) ? $levelMap[$priority] : Alert::ERROR;
+		
 		$this->watchdogClient->logNette($message, $level);
 		return $res;
 	}
