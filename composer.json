@@ -12,10 +12,15 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4.0",
+		"php": ">= 5.5.0",
+		"tracy/tracy": "*",
+		"nette/di": "*",
 		"bazo/watchdog-client": "@dev"
 	},
+	"minimum-stability": "dev",
 	"autoload": {
-		"psr-0": {"Bazo": "src/"}
+		"psr-0": {
+			"Bazo": "src/"
+		}
 	}
 }

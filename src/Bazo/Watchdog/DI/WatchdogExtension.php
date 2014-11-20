@@ -2,9 +2,8 @@
 
 namespace Bazo\Watchdog\DI;
 
+
 /**
- * WatchdogExtension
- *
  * @author Martin Bažík
  */
 class WatchdogExtension extends \Nette\DI\CompilerExtension
@@ -12,36 +11,30 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 
 	/** @var array */
 	public $defaults = [
-		'appId' => NULL,
-		'appKey' => NULL,
-		'server' => 'http://watchdog.pagodabox.com',
-		'useLogger' => TRUE
+		'appId'		 => NULL,
+		'appKey'	 => NULL,
+		'server'	 => 'http://watchdog.pagodabox.com',
+		'useLogger'	 => TRUE
 	];
-
 	private $useLogger;
 
-	/**
-	 * Processes configuration data
-	 *
-	 * @return void
-	 */
 	public function loadConfiguration()
 	{
 		$container = $this->getContainerBuilder();
 
-		$config = $this->getConfig($this->defaults, TRUE);
+		$config			 = $this->getConfig($this->defaults, TRUE);
 		$this->useLogger = $config['useLogger'];
 		unset($config['useLogger']);
-		
+
 		$container->addDefinition($this->prefix('client'))
-				->setClass('\Bazo\Watchdog\WatchdogClient', $config);
+				->setClass(\Bazo\Watchdog\WatchdogClient::class, $config);
 
 		$container->addDefinition($this->prefix('logger'))
-				->setClass('\Bazo\Watchdog\NetteLogger')
+				->setClass(\Bazo\Watchdog\NetteLogger::class)
 				->setAutowired(FALSE);
 
 		$container->addDefinition('watchdogLogger')
-				->setClass('\Bazo\Watchdog\NetteLogger')
+				->setClass(\Bazo\Watchdog\NetteLogger::class)
 				->addTag('logger')
 				->setFactory('@container::getService', [$this->prefix('logger')]);
 	}
@@ -57,4 +50,3 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 
 
 }
-
