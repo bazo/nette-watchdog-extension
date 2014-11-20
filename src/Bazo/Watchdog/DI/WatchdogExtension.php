@@ -32,11 +32,6 @@ class WatchdogExtension extends \Nette\DI\CompilerExtension
 		$container->addDefinition($this->prefix('logger'))
 				->setClass(\Bazo\Watchdog\NetteLogger::class)
 				->setAutowired(FALSE);
-
-		$container->addDefinition('watchdogLogger')
-				->setClass(\Bazo\Watchdog\NetteLogger::class)
-				->addTag('logger')
-				->setFactory('@container::getService', [$this->prefix('logger')]);
 	}
 
 
